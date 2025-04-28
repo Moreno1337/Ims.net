@@ -1,4 +1,4 @@
-namespace Ims.Tests
+namespace Ims.API.Tests
 {
     public class UnitTest1
     {
