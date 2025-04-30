@@ -1,5 +1,6 @@
-﻿using MediatR;
+﻿using Ims.Application.Clients.Requests;
+using MediatR;
 
 namespace Ims.Application.Clients.Commands;
 
-public record AddClientCommand(string Teste) : IRequest<int>;
+public record AddClientCommand(AddClientRequest Request) : IRequest<int>;
