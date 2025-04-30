@@ -3,11 +3,11 @@ using Ims.Domain.Entities;
 
 namespace Ims.Infrastructure;
 
-public class ImsDbContext : DbContext
+public class AppDbContext : DbContext
 {
     public DbSet<Client> Clients { get; set; }
 
-    public ImsDbContext(DbContextOptions<ImsDbContext> options) : base(options)
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
     }
 

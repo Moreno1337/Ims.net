@@ -5,9 +5,9 @@ namespace Ims.Infrastructure.Repositories;
 
 public class ClientRepository : IClientRepository
 {
-    private readonly ImsDbContext _context;
+    private readonly AppDbContext _context;
 
-    public ClientRepository(ImsDbContext context)
+    public ClientRepository(AppDbContext context)
     {
         _context = context;
     }

@@ -2,25 +2,25 @@
 
 public class Address
 {
-    public string? Country { get; private set; }
-    public string? State { get; private set; }
-    public string? City { get; private set; }
-    public string? ZipCode { get; private set; }
-    public string? Neighborhood { get; private set; }
-    public string? Street { get; private set; }
-    public string? Number { get; private set; }
-    public string? Complement { get; private set; }
+    public required string Country { get; init; }
+    public required string State { get; init; }
+    public required string City { get; init; }
+    public required string ZipCode { get; init; }
+    public required string Neighborhood { get; init; }
+    public required string Street { get; init; }
+    public required string Number { get; init; }
+    public required string? Complement { get; init; }
 
     private Address() { }
 
     public Address(
-        string? country,
-        string? state,
-        string? city,
-        string? zipCode,
-        string? neighborhood,
-        string? street,
-        string? number,
+        string country,
+        string state,
+        string city,
+        string zipCode,
+        string neighborhood,
+        string street,
+        string number,
         string? complement
     )
     {

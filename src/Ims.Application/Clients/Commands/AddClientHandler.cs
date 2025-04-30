@@ -31,24 +31,23 @@ public class AddClientHandler : IRequestHandler<AddClientCommand, int>
 
         var client = new Client(
             0,
+            true,
             dto.Type,
             dto.CPF,
             dto.Name,
-            true,
             dto.DateOfBirth,
             dto.StateRegistration,
             dto.CNPJ,
             dto.CompanyName,
             dto.FantasyName,
             dto.BillingTerm,
+            dto.Fees,
+            dto.Fine,
             dto.Telephone,
             dto.Cellphone,
             address,
             dto.Observations,
-            dto.EmailList,
-            dto.Fees,
-            dto.Fine,
-            dto.TotalValueInDebit
+            dto.EmailList
         );
 
         await _repository.AddAsync(client);

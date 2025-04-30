@@ -6,50 +6,57 @@ public enum ClientType { NaturalPerson, LegalEntity }
 
 public class Client
 {
-    public int Id { get; init; }
+    public required int Id { get; init; }
+    public required bool Status { get; init; }
     public ClientType Type { get; init; }
     public string? CPF { get; init; }
     public string? Name { get; init; }
-    public bool Status { get; init; }
     public DateTime? DateOfBirth { get; init; }
-    public string? StateRegistration { get; init; }
     public string? CNPJ { get; init; }
     public string? CompanyName { get; init; }
     public string? FantasyName { get; init; }
-    public int BillingTerm { get; init; }
+    public string? StateRegistration { get; init; }
+    public int? BillingTerm { get; init; }
+    public decimal? Fees { get; init; }
+    public decimal? Fine { get; init; }
     public string? Telephone { get; init; }
     public string? Cellphone { get; init; }
-    public Address? Address { get; init; }
+    public required Address Address { get; init; }
     public string? Observations { get; init; }
-    public List<string>? EmailList { get; init; }
-    public decimal Fees { get; init; }
-    public decimal Fine { get; init; }
-    public decimal TotalValueInDebit { get; init; }
+    public List<string>? EmailList { get; init; } = new();
 
     private Client() { }
 
     public Client(
         int id,
+        bool status,
         ClientType type,
         string? cpf,
         string? name,
-        bool status,
         DateTime? dateOfBirth,
-        string? stateRegistration,
         string? cnpj,
         string? companyName,
         string? fantasyName,
-        int billingTerm,
+        string? stateRegistration,
+        int? billingTerm,
+        decimal? fees,
+        decimal? fine,
         string? telephone,
         string? cellphone,
         Address address,
         string? observations,
-        List<string>? emailList,
-        decimal fees,
-        decimal fine,
-        decimal totalValueInDebit
+        List<string>? emailList
     )
     {
+        if (type == ClientType.NaturalPerson)
+        {
+            ValidateNaturalPerson(cpf, name, dateOfBirth);
+        }
+        else
+        {
+            ValidateLegalEntity(cnpj, companyName);
+        }
+
         this.Id = id;
         this.Type = type;
         this.CPF = cpf;
@@ -68,6 +75,36 @@ public class Client
         this.EmailList = emailList;
         this.Fees = fees;
         this.Fine = fine;
-        this.TotalValueInDebit = totalValueInDebit;
+    }
+
+    private void ValidateNaturalPerson(string? cpf, string? name, DateTime? dateOfBirth) 
+    {
+        if (string.IsNullOrEmpty(cpf))
+        {
+            throw new ArgumentException("CPF is required.");
+        }
+
+        if (string.IsNullOrEmpty(name))
+        {
+            throw new ArgumentException("Name is required.");
+        }
+
+        if (dateOfBirth == null)
+        {
+            throw new ArgumentException("Date of birth is required.");
+        }
+    }
+
+    private void ValidateLegalEntity(string? cnpj, string? companyName)
+    {
+        if (string.IsNullOrEmpty(cnpj))
+        {
+            throw new ArgumentException("CNPJ is required.");
+        }
+
+        if (string.IsNullOrEmpty(companyName))
+        {
+            throw new ArgumentException("Company name is required.");
+        }
     }
 }

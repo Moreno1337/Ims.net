@@ -9,7 +9,7 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 
 // DB
-builder.Services.AddDbContext<ImsDbContext>(options =>
+builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseInMemoryDatabase("ImsDb"));
 
 // MediatR
